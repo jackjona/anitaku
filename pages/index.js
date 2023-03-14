@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -21,19 +22,29 @@ export default function Home() {
         <h1 className={styles.title}>AniTaku</h1>
         <div className={styles.linkWrapper}>
           <h2 className={styles.link}>
-            <a href="/api1">API 1</a>
+            <Link href="/api1">
+              API 1
+            </Link>
           </h2>
           <h2 className={styles.link}>
-            <a href="/api2">API 2</a>
+            <Link href="/api2">
+              API 2
+            </Link>
           </h2>
           <h2 className={styles.link}>
-            <a href="/api3">API 3</a>
+            <Link href="/api3">
+              API 3
+            </Link>
           </h2>
           <h2 className={styles.link}>
-            <a href="/gallery">Gallery</a>
+            <Link href="/gallery">
+              Gallery
+            </Link>
           </h2>
           <h2 className={styles.link}>
-            <a href="/random">Random</a>
+            <Link href="/random">
+              Random
+            </Link>
           </h2>
         </div>
         <button
