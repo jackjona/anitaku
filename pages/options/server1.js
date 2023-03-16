@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TypeButton from "@/components/TypeButton";
 
-const server1 = () => {
+const Server1 = () => {
   const [imageType, setImageType] = useState("");
   const [imageURL, setImageURL] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -298,4 +298,4 @@ const server1 = () => {
   );
 };
 
-export default server1;
+export default Server1;

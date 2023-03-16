@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const gallery = ({ data }) => {
+const Gallery = ({ data }) => {
   const [imageURL, setImageURL] = useState([]);
   const [isRefreshed, setIsRefreshed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -136,7 +136,7 @@ export async function getServerSideProps() {
 
 // getInitialProps could alternatively be used instead of getServerSideProps
 
-/* gallery.getInitialProps = async (ctx) => {
+/* Gallery.getInitialProps = async (ctx) => {
   const res = await fetch("https://api.waifu.pics/many/sfw/waifu", {
     method: "POST",
     headers: {
@@ -148,4 +148,4 @@ export async function getServerSideProps() {
   return { data: json };
 }; */
 
-export default gallery;
+export default Gallery;
