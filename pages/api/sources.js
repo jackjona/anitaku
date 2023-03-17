@@ -1,5 +1,4 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
+// API sources and their paths
 export default function handler(req, res) {
   res.status(200).json({
     server1: ["/api/1", "waifu.pics"],

@@ -15,16 +15,17 @@ const Server3 = () => {
       <div className="w-[40rem] max-h-92 p-4">
         <img
           className={`rounded-xl drop-shadow-sm`}
-          src="/api/3/image"
-          /* With CDN
-            src="https://pic.re/images" 
-            */
+          src="https://pic.re/images"
+          /* Without CDN
+            src="/api/3/image"
+            OR
+            src="https://pic.re/image"
+          */
           alt=""
           onLoad={() => setIsLoading(false)}
           onError={() => setIsError(true)}
         />
       </div>
-
       {isError && (
         <div className="flex flex-col text-center justify-center max-w-lg mb-8">
           <h2 className="text-2xl text-red-600 font-semibold">
