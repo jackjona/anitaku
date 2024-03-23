@@ -115,21 +115,21 @@ const Server2 = () => {
         )}
         <div className="flex ">
           <button
-            className="bg-blue-300 dark:bg-blue-700 p-4 mt-2 rounded-2xl text-xl font-bold w-28"
+            className="bg-blue-700 hover:bg-blue-600 transition duration-150 delay-50 p-4 mt-2 rounded-2xl text-xl font-bold w-28"
             onClick={() => fetchData()}
           >
             Refresh
           </button>
           {!showGIFs ? (
             <button
-              className="bg-blue-200 dark:bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
+              className="bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
               onClick={includeGIFs}
             >
               Include GIFs
             </button>
           ) : (
             <button
-              className="bg-blue-200 dark:bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
+              className="bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
               onClick={excludeGIFs}
             >
               Exclude GIFs

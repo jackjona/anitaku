@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { useTheme } from "next-themes";
+import HeaderLink from "./HeaderLink";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -12,7 +13,7 @@ const Header = () => {
           <Link href="/">
             <span className="sr-only">AniTaku</span>
             <img
-              className="h-12 w-auto bg-transparent dark:bg-gray-200 rounded-md"
+              className="h-12 w-auto bg-gray-200 rounded-md"
               src="/logo.svg"
               alt=""
             />
@@ -20,62 +21,15 @@ const Header = () => {
         </div>
         <div className="flex flex-row">
           <ul className="hidden sm:flex items-stretch gap-3">
-            <li className="flex">
-              <Link
-                href="/options/server1"
-                className="flex items-center px-4 border-b-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 dark:hover:border-white/90 transition duration-300 delay-150 hover:delay-50 dark:border-gray-300/90 hover:text-blue-900 dark:hover:text-white/90"
-                aria-hidden="true"
-              >
-                Server 1
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                href="/options/server2"
-                className="flex items-center px-4 border-b-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 dark:hover:border-white/90 transition duration-300 delay-150 hover:delay-50 dark:border-gray-300/90 hover:text-blue-900 dark:hover:text-white/90"
-                aria-hidden="true"
-              >
-                Server 2
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                href="/options/server3"
-                className="flex items-center px-4 border-b-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 dark:hover:border-white/90 transition duration-300 delay-150 hover:delay-50 dark:border-gray-300/90 hover:text-blue-900 dark:hover:text-white/90"
-                aria-hidden="true"
-              >
-                Server 3
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                href="/gallery"
-                className="flex items-center px-4 border-b-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 dark:hover:border-white/90 transition duration-300 delay-150 hover:delay-50 dark:border-gray-300/90 hover:text-blue-900 dark:hover:text-white/90"
-                aria-hidden="true"
-              >
-                Gallery
-              </Link>
-            </li>
-            <li className="flex">
-              <Link
-                href="/random"
-                className="hidden lg:flex items-center px-4 border-b-2 border-blue-400 dark:border-blue-600 hover:border-blue-600 dark:hover:border-white/90 transition duration-300 delay-150 hover:delay-50 dark:border-gray-300/90 hover:text-blue-900 dark:hover:text-white/90"
-                aria-hidden="true"
-              >
-                Random
-              </Link>
-            </li>
+            <HeaderLink path="server1" text="Server 1" />
+            <HeaderLink path="server2" text="Server 2" />
+            <HeaderLink path="server3" text="Server 3" />
+            <HeaderLink text="Gallery" gallery />
           </ul>
         </div>
         <div className="flex justify-center items-center">
-          {/*           <button
-            className="p-10"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            Toggle {theme === "dark" ? "light" : "dark"}
-          </button> */}
           <a
-            className="text-md font-semibold leading-6 text-gray-900 dark:text-gray-200"
+            className="text-md font-semibold leading-6 text-gray-200"
             href="https://github.com/jackjona/anitaku"
             target="_blank"
             rel="noreferrer"
