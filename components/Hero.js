@@ -4,7 +4,9 @@ import React from "react";
 const Hero = () => {
   return (
     <>
-      <h1 className="text-8xl font-extrabold mb-20">AniTaku</h1>
+      <h1 className="text-8xl font-extrabold">AniTaku</h1>
+      <h2 className="text-2xl font-bold mt-8 mb-1 text-center">Click one of the buttons below to get started.</h2>
+      <h3 className="italic">While NSFW filtering is applied, complete accuracy isn’t guaranteed.</h3>
       <div className="flex flex-row flex-wrap items-start justify-center px-10">
         <Link
           href="/options/server1"

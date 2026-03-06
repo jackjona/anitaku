@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-center border-t-4 w-full mt-[2rem] text-center">
+    <footer className="flex justify-center border-t-2 w-full mt-[2rem] text-center">
       <div className="p-6">
         <p className="text-lg">
-          Built by:{" "}
+          Built by{" "}
           <a
             href="https://github.com/jackjona"
             target="_blank"
@@ -14,7 +14,7 @@ const Footer = () => {
           >
             Jack Jona
           </a>{" "}
-          - Powered by:{" "}
+          - Powered by{" "}
           <a
             href="https://waifu.pics/docs"
             target="_blank"
