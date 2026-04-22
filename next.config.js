@@ -15,6 +15,10 @@ const nextConfig = {
         source: "/api/3/:path*",
         destination: "https://pic.re/:path*",
       },
+      {
+        source: "/api/4/:path*",
+        destination: "https://api.nekosapi.com/:path*",
+      },
     ];
   },
 };

@@ -1,26 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Router from "next/router";
 
-const Server3 = () => {
+const Server4 = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [imageURL, setImageURL] = useState(null);
+
   const refreshPage = () => Router.reload();
+
+  const fetchData = async (retries = 3, delay = 500) => {
+    try {
+      setIsError(false);
+      setIsLoading(true);
+
+      const res = await fetch(`/api/4/v4/images/random`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error! status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log(data);
+
+      // Filter only safe-rated images
+      const safeImages = Array.isArray(data)
+        ? data.filter((img) => img.rating === "safe")
+        : [];
+
+      if (safeImages.length === 0) {
+        throw new Error("No safe images found");
+      }
+
+      const randomImage = safeImages[0];
+
+      setImageURL(randomImage.url);
+    } catch (err) {
+      console.error(err.message);
+
+      // Retry logic
+      if (retries > 0) {
+        await new Promise((res) => setTimeout(res, delay));
+        return fetchData(retries - 1, delay * 1.5);
+      }
+
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-6xl font-bold mb-10 text-center mt-[10vh]">
-        Server 3
+        Server 4
       </h1>
 
-      <div className="w-[40rem] max-h-92 p-4">
-        <img
-          className={`rounded-xl drop-shadow-sm`}
-          src={`/api/3/image?cb=${Date.now()}`} // Cache buster to prevent browser caching
-          alt=""
-          onLoad={() => setIsLoading(false)}
-          onError={() => setIsError(true)}
-        />
+      <div className="w-[40rem] max-h-92 p-4 justify-center items-center flex">
+        {imageURL && (
+          <img
+            className={`rounded-xl drop-shadow-sm`}
+            src={imageURL}
+            alt=""
+            onLoad={() => setIsLoading(false)}
+            onError={() => setIsError(true)}
+          />
+        )}
       </div>
+
       {isError && (
         <div className="flex flex-col text-center justify-center max-w-lg mb-8">
           <h2 className="text-2xl text-red-600 font-semibold">
@@ -28,6 +83,7 @@ const Server3 = () => {
           </h2>
         </div>
       )}
+
       {isLoading && !isError && (
         <button
           type="button"
@@ -60,10 +116,11 @@ const Server3 = () => {
 
       <button
         className="bg-blue-700 hover:bg-blue-600 transition duration-150 delay-50 p-4 mt-2 rounded-2xl text-xl font-bold w-28"
-        onClick={refreshPage}
+        onClick={() => fetchData()}
       >
         Refresh
       </button>
+
       <div
         className={`${isLoading ? "mt-[34rem]" : "mt-[21rem]"}`}
         aria-hidden="true"
@@ -72,4 +129,4 @@ const Server3 = () => {
   );
 };
 
-export default Server3;
+export default Server4;

@@ -12,25 +12,21 @@ const Server2 = () => {
     try {
       setIsLoading(true);
       // Exclude nsfw files using query string
-      const res = await fetch(
-        `/api/2/search/?is_nsfw=false${showGIFs ? `&gif=true` : `&gif=false`}${
-          imageType && `&included_tags=${imageType}`
-        }`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Accept-Version": "v5",
-          },
-        }
-      );
+      const res = await fetch("/api/2/images?IsNsfw=False", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Accept-Version": "v7",
+        },
+      });
 
       if (!res.ok) {
         throw new Error(`Error! status: ${res.status}`);
       }
 
       const data = await res.json();
-      setImageURL(data.images[0].url);
+      console.log(data);
+      setImageURL(data.items[0].url);
     } catch (err) {
       console.error(err.message);
       setIsError(true);
@@ -40,16 +36,6 @@ const Server2 = () => {
   useEffect(() => {
     fetchData();
   }, [imageType]);
-
-  const includeGIFs = () => {
-    setShowGIFs(true);
-    fetchData();
-  };
-
-  const excludeGIFs = () => {
-    setShowGIFs(true);
-    fetchData();
-  };
 
   return (
     <>
@@ -70,10 +56,6 @@ const Server2 = () => {
             <h2 className="text-2xl text-red-600 font-semibold">
               An Error Has Occured - Please Try Again Later.{" "}
             </h2>{" "}
-            <p className="pt-4 capitalize">
-              <b>Note:</b> There are not many GIFs in the database, so the more
-              you filter the less GIFs you will find.{" "}
-            </p>
           </div>
         )}
         {isLoading && !isError && (
@@ -120,81 +102,9 @@ const Server2 = () => {
           >
             Refresh
           </button>
-          {!showGIFs ? (
-            <button
-              className="bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
-              onClick={includeGIFs}
-            >
-              Include GIFs
-            </button>
-          ) : (
-            <button
-              className="bg-blue-900 px-6 py-4 mt-2 mx-2 rounded-2xl text-lg font-bold text-center"
-              onClick={excludeGIFs}
-            >
-              Exclude GIFs
-            </button>
-          )}
         </div>
       </div>
 
-      <div className="flex flex-col items-center mt-8">
-        <h2 className="text-4xl font-bold capitalize">
-          Filter
-          <span className="font-semibold">{imageType && `: ${imageType}`}</span>
-        </h2>
-        <h3 className="text-lg pb-6">Narrow Down Your Search</h3>
-      </div>
-      <div className="flex flex-row flex-wrap items-start justify-center px-10">
-        <TypeButton
-          type="maid"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="waifu"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="marin-kitagawa"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="mori-calliope"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="raiden-shogun"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="selfies"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        <TypeButton
-          type="uniform"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        />
-        {/*         <TypeButton
-          type="oppai"
-          imageType={imageType}
-          setImageType={setImageType}
-          handleClick={fetchData}
-        /> */}
-      </div>
       <div
         className={`${isLoading ? "mt-[22rem]" : "mt-[10rem]"}`}
         aria-hidden="true"

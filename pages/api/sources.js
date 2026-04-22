@@ -4,6 +4,7 @@ export default function handler(req, res) {
     server1: ["/api/1", "waifu.pics"],
     server2: ["/api/2", "waifu.im"],
     server3: ["/api/3", "pic.re"],
+    server4: ["/api/4", "nekosapi.com"],
     gallery: ["/api/1", "waifu.pics"],
     random: ["/api/1", "waifu.pics"],
   });

@@ -24,6 +24,7 @@ const Header = () => {
             <HeaderLink path="server1" text="Server 1" />
             <HeaderLink path="server2" text="Server 2" />
             <HeaderLink path="server3" text="Server 3" />
+            <HeaderLink path="server4" text="Server 4" />
             <HeaderLink text="Gallery" gallery />
           </ul>
         </div>

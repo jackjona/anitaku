@@ -29,16 +29,24 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="hover:underline"
           >
-            waifu.im,
-          </a>{" "}
-          and{" "}
+            waifu.im,{" "}
+          </a>
           <a
             href="https://pic.re/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline"
           >
-            pic.re
+            pic.re{" "}
+          </a>
+          and{" "}
+          <a
+            href="https://nekosapi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            Nekos API
           </a>
         </p>
       </div>
